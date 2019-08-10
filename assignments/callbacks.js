@@ -64,10 +64,23 @@ function multiplyNums(x, y, cb) {
 multiplyNums(5, 10, multiply => {
   console.log(`${multiply}`);
 });
+
+//
+
+// const items = ["Pencil", "Notebook", "yo-yo", "Gum"];
 function contains(item, list, cb) {
-  // contains checks if an item is present inside of the given array/list.
-  // Pass true to the callback if it is, otherwise pass false.
+  if (cb(list.includes(item))) {
+    return true; //  block of code to be executed if the condition is true
+  } else {
+    return false;
+    //  block of code to be executed if the condition is false
+  }
 }
+// contains checks if an item is present inside of the given array/list.
+// Pass true to the callback if it is, otherwise pass false.
+contains("Pencil", items, function(randomword) {
+  console.log(randomword);
+});
 
 /* STRETCH PROBLEM */
 
