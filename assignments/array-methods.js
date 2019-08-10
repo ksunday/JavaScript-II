@@ -458,31 +458,61 @@ const runners = [
 // ==== Challenge 1: Use .forEach() ====
 // The event director needs both the first and last names of each runner for their running bibs.  Combine both the first and last names into a new array called fullName.
 let fullName = [];
-const fullname = runners.map(first_name => {
-  return { first_name: "first_name", last_name: "last_name" };
-});
+runners.forEach(people =>
+  fullName.push(`${people.first_name} ${people.last_name}`)
+);
+
 console.log(fullName);
 
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runner's first names converted to uppercase because the director BECAME DRUNK WITH POWER. Convert each first name into all caps and log the result
 let allCaps = [];
+runners.map(cap => allCaps.push(cap.first_name.toUpperCase()));
+
 console.log(allCaps);
 
 // ==== Challenge 3: Use .filter() ====
-// The large shirts won't be available for the event due to an ordering issue.  Get a list of runners with large sized shirts so they can choose a different size. Return an array named largeShirts that contains information about the runners that have a shirt size of L and log the result
-let largeShirts = [];
+// The large shirts won't be available for the event due to an ordering issue.  Get a list of runners with large sized shirts
+//so they can choose a different size.
+//Return an array named largeShirts that contains information about the runners that have a shirt size of L and log the result
+let largeShirts = runners.filter(person => {
+  return person.shirt_size === "L";
+});
+
 console.log(largeShirts);
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations into a ticketPriceTotal array and log the result
-let ticketPriceTotal = [];
+let ticketPriceTotal = runners.reduce((total, doners) => {
+  return (total += doners.donation);
+}, 0);
+
 console.log(ticketPriceTotal);
 
 // ==== Challenge 5: Be Creative ====
-// Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
+// Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data
+//set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
-// Problem 1
+// Problem 1 the vendor forgot how many XL shirts to order. Add up all the XL shirts so they know how many to get.
 
-// Problem 2
+let shirtorders = runners.reduce((total, orders) => {
+  return (total += orders.shirt_size === "XL");
+}, 0);
 
-// Problem 3
+console.log(shirtorders);
+
+// Problem 2 come to find out the director was not drunk with power and we have a potential massive lawsuit, please re convert the
+//first names to all lower case
+
+let NoCaps = [];
+runners.map(nocap => NoCaps.push(nocap.first_name.toLowerCase()));
+
+console.log(NoCaps);
+
+// Problem 3 We hired a new IT guy that can fix the printer but cannot access which companies we should give thanks to for donating, please provide
+//a list of all companies that participated for the event.
+
+let Companies = [];
+runners.forEach(company => Companies.push(`${company.company_name}`));
+
+console.log(Companies);
